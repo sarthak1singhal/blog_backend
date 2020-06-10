@@ -161,47 +161,44 @@
                             <h3 class="box-title m-b-0">Create New Blog Post</h3>
                             <p class="text-muted m-b-30 font-13"> A blog post contains the author, title and its content.</p>
                             <div id="exampleValidator" class="wizard">
-                                <ul class="wizard-steps" role="tablist">
-                                    <li class="active" role="tab">
-                                        <h4><span><i class="ti-user"></i></span>Author</h4> </li>
-                                    <li role="tab">
-                                        <h4><span><i class="ti-marker-alt"></i></span>Title</h4> </li>
-                                    <li role="tab">
-                                        <h4><span><i class="ti-book"></i></span>Content</h4> </li>
-                                </ul>
-                                <form id="validation" class="form-horizontal" action="functions/new_post.php" method="post">
-                                    <div class="wizard-content">
-                                        <div class="wizard-pane active" role="tabpanel">
+                                
+                                <form id="validation" class="form-horizontal" action="functions/new_post.php" method="post"  enctype="multipart/form-data">
+                                    <div >
+                                        <div >
                                             <div class="form-group">
                                                 <label class="col-xs-3 control-label">Name   (<i>You can put "anonymous" / leave blank is you don't want to display the author's name.</i>)</label>
                                                 <div class="col-xs-5">
                                                     <input type="text" class="form-control" name="author"/> </div>
                                             </div>
-                                        </div>
-                                        <div class="wizard-pane" role="tabpanel">
                                             <div class="form-group">
                                                 <label class="col-xs-3 control-label">Post Title</label>
                                                 <div class="col-xs-5">
                                                     <input type="text" class="form-control" name="title" required/> </div>
                                             </div>
-                                        </div>
-                                        <div class="wizard-pane" role="tabpanel">
                                             <div class="form-group">
                                                 <label class="col-xs-3 control-label">Content</label>
                                                 <div class="col-xs-5">
                                                     <textarea class="form-control" name="content" required > </textarea>
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="col-xs-3 control-label">File</label>
+                                                <div class="col-xs-5">
+                                                <input  type="file" name="fileToUpload" id="fileToUpload" class="form-control" required/> </div>
+                                                </div>
+                                            </div>
+                                        
                                         </div>
+
+                                         
+                                        
                                     </div>
                                     <input type="submit" name="submit" class="btn btn-outline">
                                 </form>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- /.row -->
-                <!-- .right-sidebar -->
+                </div> 
                 <div class="right-sidebar">
                     <div class="slimscrollright">
                         <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
@@ -279,99 +276,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/custom.min.js"></script>
     <script type="text/javascript">
-    (function() {
-        $('#exampleBasic').wizard({
-            onFinish: function() {
-                alert('finish');
-            }
-        });
-        $('#exampleBasic2').wizard({
-            onFinish: function() {
-                alert('finish');
-            }
-        });
-        $('#exampleValidator').wizard({
-            onInit: function() {
-                $('#validation').formValidation({
-                    framework: 'bootstrap',
-                    fields: {
-                        username: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The username is required'
-                                },
-                                stringLength: {
-                                    min: 6,
-                                    max: 30,
-                                    message: 'The username must be more than 6 and less than 30 characters long'
-                                },
-                                regexp: {
-                                    regexp: /^[a-zA-Z0-9_\.]+$/,
-                                    message: 'The username can only consist of alphabetical, number, dot and underscore'
-                                }
-                            }
-                        },
-                        email: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The email address is required'
-                                },
-                                emailAddress: {
-                                    message: 'The input is not a valid email address'
-                                }
-                            }
-                        },
-                        password: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The password is required'
-                                },
-                                different: {
-                                    field: 'username',
-                                    message: 'The password cannot be the same as username'
-                                }
-                            }
-                        }
-                    }
-                });
-            },
-            validator: function() {
-                var fv = $('#validation').data('formValidation');
-                var $this = $(this);
-                // Validate the container
-                fv.validateContainer($this);
-                var isValidStep = fv.isValidContainer($this);
-                if (isValidStep === false || isValidStep === null) {
-                    return false;
-                }
-                return true;
-            },
-            onFinish: function() {
-                $.post("keep.php", $("#validation").serialize()).done(function() {
-                    alert("hiiii");
-                });
-            }
-        });
-        $('#accordion').wizard({
-            step: '[data-toggle="collapse"]',
-            buttonsAppendTo: '.panel-collapse',
-            templates: {
-                buttons: function() {
-                    var options = this.options;
-                    return '<div class="panel-footer"><ul class="pager">' + '<li class="previous">' + '<a href="#' + this.id + '" data-wizard="back" role="button">' + options.buttonLabels.back + '</a>' + '</li>' + '<li class="next">' + '<a href="#' + this.id + '" data-wizard="next" role="button">' + options.buttonLabels.next + '</a>' + '<a href="#' + this.id + '" data-wizard="finish" role="button">' + options.buttonLabels.finish + '</a>' + '</li>' + '</ul></div>';
-                }
-            },
-            onBeforeShow: function(step) {
-                step.$pane.collapse('show');
-            },
-            onBeforeHide: function(step) {
-                step.$pane.collapse('hide');
-            },
-            onFinish: function() {
-                alert('finish');
-            }
-        });
-    })();
+    
     </script>
     <!--Style Switcher -->
     <script src="../plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>

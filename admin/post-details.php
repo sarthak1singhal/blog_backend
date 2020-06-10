@@ -182,6 +182,8 @@
                               
                                 '<div class="col-lg-12 col-md-9 col-sm-8 col-xs-12 mail_listing">
                                     <div class="media m-b-30 p-t-20">
+                                    <img height = "400px" src='.$row["filePath"].' />
+
                                     	<h4 class="font-bold m-t-0">'.$row["title"].'
                                         <i style="float:right; font-size:15px; color:orange;">Comments: '.mysqli_num_rows($query2).'</i>
                                         </h4>

@@ -98,6 +98,7 @@ INSERT INTO `contacts` (`id`, `names`, `email`, `message`, `date`) VALUES
 CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `author` varchar(200) NOT NULL,
+  `filePath` varchar(200) NOT NULL,
   `title` varchar(400) NOT NULL,
   `content` text NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
